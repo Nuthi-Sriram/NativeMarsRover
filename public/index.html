@@ -9,7 +9,7 @@
   <link id="cssTheme" rel="stylesheet" href="styling/cssBasic.css" />
   <link rel="shortcut icon" type="image/jpg" href="styling/outerspacerocket.jpg" />
 
-  
+
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/7.15.5/firebase-app.js"></script>
   <!-- include only the Firebase features as you need -->
@@ -60,9 +60,19 @@
           <li id='startButtonAddObject'><a href="#">Add Tools</a></li>
           <li id='startButtonStart'><button id="actualStartButton" class="btn btn-default navbar-btn"
               type="button">Visualize!</button></li>
-          <li id='startButtonClearBoard'><a href="#">Clear Board</a></li>
+            
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reset
+                  <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li id='startButtonClearBoard'><a href="#">Reset Board</a></li>
+                  <li id='startButtonClearWalls'><a href="#">Clear Walls &amp; Weights</a></li>
+                  <li id='startButtonClearPath'><a href="#">Clear Path</a></li>
+                </ul>
+              </li>    
+          <!-- <li id='startButtonClearBoard'><a href="#">Clear Board</a></li>
           <li id='startButtonClearWalls'><a href="#">Clear Walls &amp; Weights</a></li>
-          <li id='startButtonClearPath'><a href="#">Clear Path</a></li>
+          <li id='startButtonClearPath'><a href="#">Clear Path</a></li> -->
           <li class="dropdown">
             <a id="adjustSpeed" class="dropdown-toggle" data-toggle="dropdown" href="#">Speed: Fast
               <span class="caret"></span></a>
