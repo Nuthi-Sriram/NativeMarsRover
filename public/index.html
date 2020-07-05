@@ -1,65 +1,131 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.15.5/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.15.5/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.15.5/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.15.5/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.15.5/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NativeMarsRover</title>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/7.15.5/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/7.15.5/firebase-auth.js"></script>
+  <script defer src="/__/firebase/7.15.5/firebase-database.js"></script>
+  <script defer src="/__/firebase/7.15.5/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/7.15.5/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+  <link id="cssTheme" rel="stylesheet" href="public/styling/cssBasic.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <div id='navbarDiv'>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a id="refreshButton" class="navbar-brand" href="#">Pathfinding Visualizer</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Algorithms
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li id='startButtonDijkstra'><a href="#">Dijkstra's Algorithm</a></li>
+              <li id='startButtonAStar2'><a href="#">A* Search</a></li>
+              <li id='startButtonGreedy'><a href="#">Greedy Best-first Search</a></li>
+              <li id='startButtonAStar'><a href="#">Swarm Algorithm</a></li>
+              <li id='startButtonAStar3'><a href="#">Convergent Swarm Algorithm</a></li>
+              <li id='startButtonBidirectional'><a href="#">Bidirectional Swarm Algorithm</a></li>
+              <li id='startButtonBFS'><a href="#">Breadth-first Search</a></li>
+              <li id='startButtonDFS'><a href="#">Depth-first Search</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mazes &amp; Patterns
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li id='startButtonCreateMazeTwo'><a href="#">Recursive Division</a></li>
+              <li id='startButtonCreateMazeThree'><a href="#">Recursive Division (vertical skew)</a></li>
+              <li id='startButtonCreateMazeFour'><a href="#">Recursive Division (horizontal skew)</a></li>
+              <li id='startButtonCreateMazeOne'><a href="#">Basic Random Maze</a></li>
+              <li id='startButtonCreateMazeWeights'><a href="#">Basic Weight Maze</a></li>
+              <li id='startStairDemonstration'><a href="#">Simple Stair Pattern</a></li>
+            </ul>
+          </li>
+          <li id='startButtonAddObject'><a href="#">Add Bomb</a></li>
+          <li id='startButtonStart'><button id="actualStartButton" class="btn btn-default navbar-btn"
+              type="button">Visualize!</button></li>
+          <li id='startButtonClearBoard'><a href="#">Clear Board</a></li>
+          <li id='startButtonClearWalls'><a href="#">Clear Walls &amp; Weights</a></li>
+          <li id='startButtonClearPath'><a href="#">Clear Path</a></li>
+          <li class="dropdown">
+            <a id="adjustSpeed" class="dropdown-toggle" data-toggle="dropdown" href="#">Speed: Fast
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li id='adjustFast'><a href="#">Fast</a></li>
+              <li id='adjustAverage'><a href="#">Average</a></li>
+              <li id='adjustSlow'><a href="#">Slow</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div id="tutorial">
+    <h3>Welcome to Pathfinding Visualizer!</h3>
+    <h6>This short tutorial will walk you through all of the features of this application.</h6>
+    <p>If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!</p>
+    <div id="tutorialCounter">1/9</div>
+    <img id="mainTutorialImage" src="public/styling/c_icon.png">
+    <button id="nextButton" class="btn btn-default navbar-btn" type="button">Next</button>
+    <button id="previousButton" class="btn btn-default navbar-btn" type="button">Previous</button>
+    <button id="skipButton" class="btn btn-default navbar-btn" type="button">Skip Tutorial</button>
+  </div>
+  <div id='mainGrid'>
+    <div id='mainText'>
+      <ul>
+        <li>
+          <div class="start"></div>Start Node
+        </li>
+        <li>
+          <div class="target"></div>Target Node
+        </li>
+        <li id="bombLegend">
+          <div class="object"></div>Bomb Node
+        </li>
+        <li id="weightLegend">
+          <div class="borderlessWeight"></div>Weight Node
+        </li>
+        <li>
+          <div class="unvisited"></div>Unvisited Node
+        </li>
+        <li>
+          <div class="visited"></div>
+          <div class="visitedobject"></div>Visited Nodes
+        </li>
+        <li>
+          <div class="shortest-path"></div>Shortest-path Node
+        </li>
+        <li>
+          <div class="wall"></div>Wall Node
+        </li>
+      </ul>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <div id="algorithmDescriptor">Pick an algorithm and visualize it!</div>
+    <table id='board' />
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src='public/browser/bundle.js'></script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
 </html>
