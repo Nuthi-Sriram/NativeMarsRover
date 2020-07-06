@@ -58,7 +58,7 @@
             <ul class="dropdown-menu">
               <li id='startButtonDijkstra'><a href="#">Dijkstra's Algorithm</a></li>
               <li id='startButtonAStar2'><a href="#">Simple A* Search</a></li>
-              <li id='startButtonAStarAdvanced'><button id="myBtn" ><a href="#">Advanced A* Search</a></button></li>
+              <li id='startButtonAStarAdvanced'><button id="myBtn"><a href="#">Advanced A* Search</a></button></li>
               <li id='startButtonGreedy'><a href="#">Greedy Best-first Search</a></li>
               <li id='startButtonAStar'><a href="#">Swarm Algorithm</a></li>
               <li id='startButtonAStar3'><a href="#">Convergent Swarm Algorithm</a></li>
@@ -159,37 +159,72 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <p>Some text in the Modal..</p>
+        <div class="accordion">
+          <h3 id="astar_header"><a href="#">A*</a></h3>
+          <div id="astar_section" class="finder_section">
+            <header class="option_header">
+              <h3>Heuristic</h3>
+            </header>
+            <div id="astar_heuristic" class="sub_options">
+              <input type="radio" name="astar_heuristic" value="manhattan" checked />
+              <label class="option_label">Manhattan</label> <br>
+              <input type="radio" name="astar_heuristic" value="euclidean" />
+              <label class="option_label">Euclidean</label> <br>
+              <input type="radio" name="astar_heuristic" value="octile" />
+              <label class="option_label">Octile</label> <br>
+              <input type="radio" name="astar_heuristic" value="chebyshev" />
+              <label class="option_label">Chebyshev</label> <br>
+            </div>
+
+            <header class="option_header">
+              <h3>Options</h3>
+            </header>
+            <div class="optional sub_options">
+              <input type="checkbox" class="allow_diagonal" checked>
+              <label class="option_label">Allow Diagonal</label> <br>
+              <input type="checkbox" class="bi-directional">
+              <label class="option_label">Bi-directional</label> <br>
+              <input type="checkbox" class="dont_cross_corners">
+              <label class="option_label">Don't Cross Corners</label> <br>
+              <input class="spinner" name="astar_weight" value="1">
+              <label class="option_label">Weight</label> <br>
+            </div>
+          </div>
+          <div id="play_panel" class="panel right_panel">
+            <button id="button1" class="control_button">Search</button>
+          </div>
+
+        </div>
+
       </div>
 
-    </div>
+      <script>
+        var modal = document.getElementById("myModal");
 
-    <script>
-      var modal = document.getElementById("myModal");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-      // Get the button that opens the modal
-      var btn = document.getElementById("myBtn");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+          modal.style.display = "block";
+        }
 
-      // When the user clicks the button, open the modal 
-      btn.onclick = function () {
-        modal.style.display = "block";
-      }
-
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function () {
-        modal.style.display = "none";
-      }
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function (event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
           modal.style.display = "none";
         }
-      }
 
-    </script>
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+
+      </script>
 </body>
 
 
