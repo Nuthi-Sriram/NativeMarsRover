@@ -862,6 +862,14 @@ Board.prototype.toggleButtons = function () {
       this.changeStartNodeImages();
     }
 
+    document.getElementById("startButtonAStarAdvanced").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Advanced A*!</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+
+
     document.getElementById("startButtonAStar3").onclick = () => {
       document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Convergent Swarm!</button>'
       this.currentAlgorithm = "CLA";

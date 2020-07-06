@@ -7,6 +7,7 @@
   <title>NativeMarsRover</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link id="cssTheme" rel="stylesheet" href="styling/cssBasic.css" />
+  <link id="css" rel="stylesheet" href="styling/popoverStyle.css" />
   <link rel="shortcut icon" type="image/jpg" href="styling/outerspacerocket.jpg" />
 
 
@@ -26,19 +27,21 @@
   <script type="text/javascript" src="./lib/state-machine.min.js"></script>
   <script type="text/javascript" src="./lib/async.min.js"></script>
 
-    <script type="text/javascript" src="./lib/ui/jquery.ui.core.min.js"></script>
-    <script type="text/javascript" src="./lib/ui/jquery.ui.widget.min.js"></script>
-    <script type="text/javascript" src="./lib/ui/jquery.ui.mouse.min.js"></script>
-    <script type="text/javascript" src="./lib/ui/jquery.ui.draggable.min.js"></script>
-    <script type="text/javascript" src="./lib/ui/jquery.ui.accordion.min.js"></script>
-    <script type="text/javascript" src="./lib/ui/jquery.ui.slider.min.js"></script>
+  <script type="text/javascript" src="./lib/ui/jquery.ui.core.min.js"></script>
+  <script type="text/javascript" src="./lib/ui/jquery.ui.widget.min.js"></script>
+  <script type="text/javascript" src="./lib/ui/jquery.ui.mouse.min.js"></script>
+  <script type="text/javascript" src="./lib/ui/jquery.ui.draggable.min.js"></script>
+  <script type="text/javascript" src="./lib/ui/jquery.ui.accordion.min.js"></script>
+  <script type="text/javascript" src="./lib/ui/jquery.ui.slider.min.js"></script>
 
-    <script type="text/javascript" src="./lib/pathfinding-browser.min.js"></script>
+  <script type="text/javascript" src="./lib/pathfinding-browser.min.js"></script>
 
-    <script type="text/javascript" src="./js/view.js"></script>
-    <script type="text/javascript" src="./js/controller.js"></script>
-    <script type="text/javascript" src="./js/panel.js"></script>
-    <script type="text/javascript" src="./js/main.js"></script>
+  <script type="text/javascript" src="./js/view.js"></script>
+  <script type="text/javascript" src="./js/controller.js"></script>
+  <script type="text/javascript" src="./js/panel.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+
+
 </head>
 
 <body>
@@ -54,7 +57,8 @@
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li id='startButtonDijkstra'><a href="#">Dijkstra's Algorithm</a></li>
-              <li id='startButtonAStar2'><a href="#">A* Search</a></li>
+              <li id='startButtonAStar2'><a href="#">Simple A* Search</a></li>
+              <li id='startButtonAStarAdvanced'><button id="myBtn" ><a href="#">Advanced A* Search</a></button></li>
               <li id='startButtonGreedy'><a href="#">Greedy Best-first Search</a></li>
               <li id='startButtonAStar'><a href="#">Swarm Algorithm</a></li>
               <li id='startButtonAStar3'><a href="#">Convergent Swarm Algorithm</a></li>
@@ -78,16 +82,16 @@
           <li id='startButtonAddObject'><a href="#">Add Tools</a></li>
           <li id='startButtonStart'><button id="actualStartButton" class="btn btn-default navbar-btn"
               type="button">Visualize!</button></li>
-            
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reset
-                  <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li id='startButtonClearBoard'><a href="#">Reset Board</a></li>
-                  <li id='startButtonClearWalls'><a href="#">Clear Walls &amp; Weights</a></li>
-                  <li id='startButtonClearPath'><a href="#">Clear Path</a></li>
-                </ul>
-              </li>    
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reset
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li id='startButtonClearBoard'><a href="#">Reset Board</a></li>
+              <li id='startButtonClearWalls'><a href="#">Clear Walls &amp; Weights</a></li>
+              <li id='startButtonClearPath'><a href="#">Clear Path</a></li>
+            </ul>
+          </li>
           <!-- <li id='startButtonClearBoard'><a href="#">Clear Board</a></li>
           <li id='startButtonClearWalls'><a href="#">Clear Walls &amp; Weights</a></li>
           <li id='startButtonClearPath'><a href="#">Clear Path</a></li> -->
@@ -144,10 +148,50 @@
         </li>
       </ul>
     </div>
+
     <div id="algorithmDescriptor">Pick an algorithm and visualize it!</div>
     <table id='board' />
-  </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
+
+    </div>
+
+    <script>
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal 
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+    </script>
 </body>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
