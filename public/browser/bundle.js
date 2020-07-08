@@ -1180,15 +1180,33 @@
           this.currentHeuristic = "poweredManhattanDistance"
           this.changeStartNodeImages();
         }
-        // document.getElementById("startButtonAStarAdvanced").onclick = () => {
-        //   document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Advanced A*!</button>'
+        document.getElementById("startButtonAStarAdvanced").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Advanced A*!</button>'
 
-        //   this.currentAlgorithm = "astar";
-        //   this.currentHeuristic = "poweredManhattanDistance"
-        //   this.changeStartNodeImages();
-        // }
+          this.currentAlgorithm = "astar";
+          this.currentHeuristic = "poweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
         document.getElementById("button1").onclick = () => {
           document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Manhattan)</button>'
+          this.currentAlgorithm = "astar";
+          this.currentHeuristic = "poweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button2").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Euclidean)</button>'
+          this.currentAlgorithm = "astar";
+          this.currentHeuristic = "poweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button3").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Octile)</button>'
+          this.currentAlgorithm = "astar";
+          this.currentHeuristic = "poweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button4").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Chebyshev)</button>'
           this.currentAlgorithm = "astar";
           this.currentHeuristic = "poweredManhattanDistance"
           this.changeStartNodeImages();
