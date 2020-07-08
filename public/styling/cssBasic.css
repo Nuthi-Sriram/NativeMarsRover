@@ -7122,7 +7122,7 @@ footer p {
   width: 17vw;
 }
 
-#button1 {
+#button1,#button2,#button3,#button4 {
   background: #3490E7;
   margin:8px;
   box-shadow: inset 0px -3px 0px 0px #2E81CF;

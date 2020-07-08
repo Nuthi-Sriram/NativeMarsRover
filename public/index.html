@@ -153,8 +153,8 @@
 
     <div id="algorithmDescriptor">Pick an algorithm and visualize it!</div>
     <table id='board' />
-    
-    
+
+
     <!-- The Modal -->
     <div id="myModal" class="modal">
 
@@ -165,9 +165,9 @@
           <h3 id="astar_header"><a href="#">A*</a></h3>
           <div id="astar_section" class="finder_section">
             <header class="option_header">
-              <h3>Heuristic</h3>
+              <h3>Pick a Heuristic function to play with!!</h3>
             </header>
-            <div id="astar_heuristic" class="sub_options">
+            <!-- <div id="astar_heuristic" class="sub_options">
               <input type="radio" name="astar_heuristic" value="manhattan" checked />
               <label class="option_label">Manhattan</label> <br>
               <input type="radio" name="astar_heuristic" value="euclidean" />
@@ -176,12 +176,23 @@
               <label class="option_label">Octile</label> <br>
               <input type="radio" name="astar_heuristic" value="chebyshev" />
               <label class="option_label">Chebyshev</label> <br>
+            </div> -->
+            <div id="play_panel" class="panel right_panel">
+              <button id="button1" class="control_button">manhattan </button>
             </div>
-
-            <header class="option_header">
+            <div id="play_panel" class="panel right_panel">
+              <button id="button2" class="control_button">euclidean </button>
+            </div>
+            <div id="play_panel" class="panel right_panel">
+              <button id="button3" class="control_button">octile   </button>
+            </div>
+            <div id="play_panel" class="panel right_panel">
+              <button id="button4" class="control_button">chebyshev</button>
+            </div>
+            <!-- <header class="option_header">
               <h3>Options</h3>
-            </header>
-            <div class="optional sub_options">
+            </header> -->
+            <!-- <div class="optional sub_options">
               <input type="checkbox" class="allow_diagonal" checked>
               <label class="option_label">Allow Diagonal</label> <br>
               <input type="checkbox" class="bi-directional">
@@ -190,43 +201,58 @@
               <label class="option_label">Don't Cross Corners</label> <br>
               <input class="spinner" name="astar_weight" value="1">
               <label class="option_label">Weight</label> <br>
-            </div>
+            </div> -->
           </div>
-          <div id="play_panel" class="panel right_panel">
+          <!-- <div id="play_panel" class="panel right_panel">
             <button id="button1" class="control_button">Search</button>
-          </div>
+          </div> -->
 
         </div>
 
       </div>
+    </div>
+    <script>
+      var modal = document.getElementById("myModal");
 
-      <script>
-        var modal = document.getElementById("myModal");
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+      var btn1 = document.getElementById("button1");
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+      // When the user clicks the button, open the modal 
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+      btn1.onclick = function () {
+        modal.style.display = "none";
+      }
+      // document.getElementsById("button1").onclick = function () {
+      //   modal.style.display = "none";
+      // }
+      // span.onclick = function () {
+      //   modal.style.display = "none";
+      // }
+      // span.onclick = function () {
+      //   modal.style.display = "none";
+      // }
+      // span.onclick = function () {
+      //   modal.style.display = "none";
+      // }
 
-        // When the user clicks the button, open the modal 
-        btn.onclick = function () {
-          modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
           modal.style.display = "none";
         }
+      }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-
-      </script>
+    </script>
 </body>
 
 
