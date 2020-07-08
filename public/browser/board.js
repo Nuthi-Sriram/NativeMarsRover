@@ -8,6 +8,7 @@ const recursiveDivisionMaze = require("./mazeAlgorithms/recursiveDivisionMaze");
 const otherMaze = require("./mazeAlgorithms/otherMaze");
 const otherOtherMaze = require("./mazeAlgorithms/otherOtherMaze");
 const astar = require("./pathfindingAlgorithms/astar");
+// const astarEuclidean=require("./pathfindingAlgorithms/astarEuclidean");
 const stairDemonstration = require("./mazeAlgorithms/stairDemonstration");
 const weightsDemonstration = require("./mazeAlgorithms/weightsDemonstration");
 const simpleDemonstration = require("./mazeAlgorithms/simpleDemonstration");
@@ -864,17 +865,37 @@ Board.prototype.toggleButtons = function () {
 
     document.getElementById("startButtonAStarAdvanced").onclick = () => {
       document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Advanced A*!</button>'
-      this.currentAlgorithm = "astarChebhyshev";
-      this.currentHeuristic = "poweredManhattanDistance"
-      this.changeStartNodeImages();
-    }
-    document.getElementById("button1").onclick = () => {
-      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!</button>'
+
       this.currentAlgorithm = "astar";
       this.currentHeuristic = "poweredManhattanDistance"
       this.changeStartNodeImages();
     }
-    
+    document.getElementById("button1").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Manhattan)</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button2").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Euclidean)</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button3").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Octile)</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button4").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Chebyshev)</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+
+
 
     document.getElementById("startButtonAStar3").onclick = () => {
       document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Convergent Swarm!</button>'
