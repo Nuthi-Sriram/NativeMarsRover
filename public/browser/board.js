@@ -864,7 +864,7 @@ Board.prototype.toggleButtons = function () {
 
     document.getElementById("startButtonAStarAdvanced").onclick = () => {
       document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Advanced A*!</button>'
-      this.currentAlgorithm = "astar";
+      this.currentAlgorithm = "astarChebhyshev";
       this.currentHeuristic = "poweredManhattanDistance"
       this.changeStartNodeImages();
     }
