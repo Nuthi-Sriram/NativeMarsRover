@@ -8,6 +8,7 @@ const recursiveDivisionMaze = require("./mazeAlgorithms/recursiveDivisionMaze");
 const otherMaze = require("./mazeAlgorithms/otherMaze");
 const otherOtherMaze = require("./mazeAlgorithms/otherOtherMaze");
 const astar = require("./pathfindingAlgorithms/astar");
+// const astarEuclidean=require("./pathfindingAlgorithms/astarEuclidean");
 const stairDemonstration = require("./mazeAlgorithms/stairDemonstration");
 const weightsDemonstration = require("./mazeAlgorithms/weightsDemonstration");
 const simpleDemonstration = require("./mazeAlgorithms/simpleDemonstration");
@@ -730,7 +731,7 @@ Board.prototype.toggleTutorialButtons = function () {
     } else if (counter === 8) {
       document.getElementById("tutorial").innerHTML = `<h3>Visualizing and more</h3><h6>Use the navbar buttons to visualize algorithms and to do other stuff!</h6><p>You can clear the current path, clear walls and weights, clear the entire board, and adjust the visualization speed, all from the navbar. If you want to access this tutorial again, click on "Pathfinding Visualizer" in the top left corner of your screen.</p><img id="secondTutorialImage" src="public/styling/navbar.png"><div id="tutorialCounter">${counter}/9</div><button id="nextButton" class="btn btn-default navbar-btn" type="button">Next</button><button id="previousButton" class="btn btn-default navbar-btn" type="button">Previous</button><button id="skipButton" class="btn btn-default navbar-btn" type="button">Skip Tutorial</button>`
     } else if (counter === 9) {
-      document.getElementById("tutorial").innerHTML = `<h3>Enjoy!</h3><h6>I hope you have just as much fun playing around with this visualization tool as I had building it!</h6><p>If you want to see the source code for this application, check out my <a href="https://github.com/clementmihailescu/Pathfinding-Visualizer">github</a>.</p><div id="tutorialCounter">${counter}/9</div><button id="finishButton" class="btn btn-default navbar-btn" type="button">Finish</button><button id="previousButton" class="btn btn-default navbar-btn" type="button">Previous</button><button id="skipButton" class="btn btn-default navbar-btn" type="button">Skip Tutorial</button>`
+      document.getElementById("tutorial").innerHTML = `<h3>Enjoy!</h3><h6>I hope you have just as much fun playing around with this visualization tool as I had building it!</h6><p>If you want to see the source code for this application, check out my <a href="#">github</a>.</p><div id="tutorialCounter">${counter}/9</div><button id="finishButton" class="btn btn-default navbar-btn" type="button">Finish</button><button id="previousButton" class="btn btn-default navbar-btn" type="button">Previous</button><button id="skipButton" class="btn btn-default navbar-btn" type="button">Skip Tutorial</button>`
       document.getElementById("finishButton").onclick = () => {
         document.getElementById("tutorial").style.display = "none";
         board.toggleButtons();
@@ -861,6 +862,40 @@ Board.prototype.toggleButtons = function () {
       this.currentHeuristic = "poweredManhattanDistance"
       this.changeStartNodeImages();
     }
+
+    document.getElementById("startButtonAStarAdvanced").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Advanced A*!</button>'
+
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button1").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Manhattan)</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button2").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Euclidean)</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button3").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Octile)</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button4").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Chebyshev)</button>'
+      this.currentAlgorithm = "astar";
+      this.currentHeuristic = "poweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+
+
 
     document.getElementById("startButtonAStar3").onclick = () => {
       document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Convergent Swarm!</button>'
