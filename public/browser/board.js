@@ -41,6 +41,7 @@ function Board(height, width) {
   this.isObject = false;
   this.buttonsOn = false;
   this.speed = "fast";
+  this.terrain="wall"
 }
 
 Board.prototype.initialise = function () {
@@ -188,9 +189,9 @@ Board.prototype.changeNormalNode = function (currentNode) {
   if (!this.keyDown) {
     if (!relevantStatuses.includes(currentNode.status)) {
       element.className = currentNode.status !== "wall" ?
-        "wall" : "unvisited";
+      this.terrain : "unvisited";
       currentNode.status = element.className !== "wall" ?
-        "unvisited" : "wall";
+      "unvisited" : this.terrain;
       currentNode.weight = 0;
     }
   } else if (this.keyDown === 87 && !unweightedAlgorithms.includes(this.currentAlgorithm)) {
@@ -817,8 +818,13 @@ Board.prototype.toggleButtons = function () {
       document.getElementById("adjustSpeed").innerHTML = 'Speed: Slow<span class="caret"></span>';
     }
 
+    document.getElementById("terraintype0").onclick = () => {
+      this.terrain = "wall";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Default<span class="caret"></span>';
+    }
+
     document.getElementById("terraintype1").onclick = () => {
-      this.speed = "fast";
+      this.terrain = "wall1";
       document.getElementById("terraintype").innerHTML = 'Terrain type: Air<span class="caret"></span>';
     }
     

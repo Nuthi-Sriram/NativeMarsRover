@@ -359,6 +359,7 @@
       this.isObject = false;
       this.buttonsOn = false;
       this.speed = "fast";
+      this.terrain="wall";
     }
 
     Board.prototype.initialise = function () {
@@ -506,9 +507,9 @@
       if (!this.keyDown) {
         if (!relevantStatuses.includes(currentNode.status)) {
           element.className = currentNode.status !== "wall" ?
-            "wall" : "unvisited";
+            this.terrain : "unvisited";
           currentNode.status = element.className !== "wall" ?
-            "unvisited" : "wall";
+            "unvisited" : this.terrain;
           currentNode.weight = 0;
         }
       } else if (this.keyDown === 87 && !unweightedAlgorithms.includes(this.currentAlgorithm)) {
@@ -1136,9 +1137,13 @@
         }
 
 
+        document.getElementById("terraintype0").onclick = () => {
+          this.terrain = "wall";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Default<span class="caret"></span>';
+        }
 
         document.getElementById("terraintype1").onclick = () => {
-          this.speed = "fast";
+          this.terrain = "wall1";
           document.getElementById("terraintype").innerHTML = 'Terrain type: Air<span class="caret"></span>';
         }
 
