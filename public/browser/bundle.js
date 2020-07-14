@@ -1135,6 +1135,47 @@
           document.getElementById("adjustSpeed").innerHTML = 'Speed: Slow<span class="caret"></span>';
         }
 
+
+
+        document.getElementById("terraintype1").onclick = () => {
+          this.speed = "fast";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Air<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype2").onclick = () => {
+          this.speed = "fast";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Craters<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype3").onclick = () => {
+          this.speed = "fast";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Volcanoes<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype4").onclick = () => {
+          this.speed = "fast";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Rocky<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype5").onclick = () => {
+          this.speed = "fast";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Water<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype6").onclick = () => {
+          this.speed = "fast";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Sand<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype7").onclick = () => {
+          this.speed = "fast";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Grass<span class="caret"></span>';
+        }
+        document.getElementById("terraintype8").onclick = () => {
+          this.speed = "fast";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Granite<span class="caret"></span>';
+        }
+
         document.getElementById("startStairDemonstration").onclick = () => {
           this.clearWalls();
           this.clearPath("clickedButton");
