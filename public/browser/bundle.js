@@ -156,7 +156,7 @@
           } else if (currentNode.direction === "left") {
             currentHTMLNode.className = "shortest-path-left";
           } else if (currentNode.direction = "down-right") {
-            currentHTMLNode.className = "wall"
+            currentHTMLNode.className = this.terrain
           }
         }
         if (previousNode) {
@@ -306,7 +306,7 @@
             board.toggleButtons();
             return;
           }
-          nodes[index].className = board.nodes[nodes[index].id].weight === 15 ? "unvisited weight" : "wall";
+          nodes[index].className = board.nodes[nodes[index].id].weight === 15 ? "unvisited weight" : this.terrain;
           timeout(index + 1);
         }, speed);
       }
@@ -506,9 +506,9 @@
       let unweightedAlgorithms = ["dfs", "bfs"]
       if (!this.keyDown) {
         if (!relevantStatuses.includes(currentNode.status)) {
-          element.className = currentNode.status !== "wall" ?
+          element.className = currentNode.status !== this.terrain ?
             this.terrain : "unvisited";
-          currentNode.status = element.className !== "wall" ?
+          currentNode.status = element.className !== this.terrain ?
             "unvisited" : this.terrain;
           currentNode.weight = 0;
         }
@@ -730,11 +730,11 @@
         let random = Math.random();
         let currentHTMLNode = document.getElementById(node);
         let relevantClassNames = ["start", "target", "object"]
-        let randomTwo = type === "wall" ? 0.25 : 0.35;
+        let randomTwo = type === this.terrain ? 0.25 : 0.35;
         if (random < randomTwo && !relevantClassNames.includes(currentHTMLNode.className)) {
-          if (type === "wall") {
-            currentHTMLNode.className = "wall";
-            this.nodes[node].status = "wall";
+          if (type === this.terrain) {
+            currentHTMLNode.className = this.terrain;
+            this.nodes[node].status = this.terrain;
             this.nodes[node].weight = 0;
           } else if (type === "weight") {
             currentHTMLNode.className = "unvisited weight";
@@ -826,7 +826,7 @@
         currentNode.otherdistance = Infinity;
         currentNode.otherdirection = null;
         let currentHTMLNode = document.getElementById(id);
-        let relevantStatuses = ["wall", "start", "target", "object"];
+        let relevantStatuses = [this.terrain, "start", "target", "object"];
         if ((!relevantStatuses.includes(currentNode.status) || currentHTMLNode.className === "visitedobject") && currentNode.weight !== 15) {
           currentNode.status = "unvisited";
           currentHTMLNode.className = "unvisited";
@@ -871,7 +871,7 @@
         currentNode.heuristicDistance = null;
         currentNode.storedDirection = currentNode.direction;
         currentNode.direction = null;
-        let relevantStatuses = ["wall", "start", "target", "object"];
+        let relevantStatuses = [this.terrain, "start", "target", "object"];
         if (!relevantStatuses.includes(currentNode.status)) {
           currentNode.status = "unvisited";
         }
