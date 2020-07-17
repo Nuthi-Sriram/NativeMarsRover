@@ -842,7 +842,7 @@
       Object.keys(this.nodes).forEach(id => {
         let currentNode = this.nodes[id];
         let currentHTMLNode = document.getElementById(id);
-        if (currentNode.status === "wall" || currentNode.weight === 15) {
+        if (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") || currentNode.weight === 15) {
           currentNode.status = "unvisited";
           currentNode.weight = 0;
           currentHTMLNode.className = "unvisited";
@@ -2000,7 +2000,7 @@
       let unvisitedNodes = Object.keys(nodes);
       while (unvisitedNodes.length) {
         let currentNode = closestNode(nodes, unvisitedNodes);
-        while (currentNode.status === "wall" && unvisitedNodes.length) {
+        while (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") && unvisitedNodes.length) {
           currentNode = closestNode(nodes, unvisitedNodes)
         }
         if (currentNode.distance === Infinity) return false;
@@ -2062,19 +2062,19 @@
       let potentialNeighbor;
       if (boardArray[x - 1] && boardArray[x - 1][y]) {
         potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x + 1] && boardArray[x + 1][y]) {
         potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y - 1]) {
         potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y + 1]) {
         potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       // if (boardArray[x - 1] && boardArray[x - 1][y - 1]) {
       //   potentialNeighbor = `${(x - 1).toString()}-${(y - 1).toString()}`
@@ -2295,9 +2295,9 @@
       while (unvisitedNodesOne.length && unvisitedNodesTwo.length) {
         let currentNode = closestNode(nodes, unvisitedNodesOne);
         let secondCurrentNode = closestNodeTwo(nodes, unvisitedNodesTwo);
-        while ((currentNode.status === "wall" || secondCurrentNode.status === "wall") && unvisitedNodesOne.length && unvisitedNodesTwo.length) {
-          if (currentNode.status === "wall") currentNode = closestNode(nodes, unvisitedNodesOne);
-          if (secondCurrentNode.status === "wall") secondCurrentNode = closestNodeTwo(nodes, unvisitedNodesTwo);
+        while ((currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") || secondCurrentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) && unvisitedNodesOne.length && unvisitedNodesTwo.length) {
+          if (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) currentNode = closestNode(nodes, unvisitedNodesOne);
+          if (secondCurrentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) secondCurrentNode = closestNodeTwo(nodes, unvisitedNodesTwo);
         }
         if (currentNode.distance === Infinity || secondCurrentNode.otherdistance === Infinity) {
           return false;
@@ -2393,19 +2393,19 @@
       let potentialNeighbor;
       if (boardArray[x - 1] && boardArray[x - 1][y]) {
         potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x + 1] && boardArray[x + 1][y]) {
         potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y - 1]) {
         potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y + 1]) {
         potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       return neighbors;
     }
@@ -2708,7 +2708,7 @@
       let potentialNeighbor;
       if (boardArray[x - 1] && boardArray[x - 1][y]) {
         potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") {
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) {
           if (name === "bfs") {
             neighbors.push(potentialNeighbor);
           } else {
@@ -2718,7 +2718,7 @@
       }
       if (boardArray[x][y + 1]) {
         potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") {
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) {
           if (name === "bfs") {
             neighbors.push(potentialNeighbor);
           } else {
@@ -2728,7 +2728,7 @@
       }
       if (boardArray[x + 1] && boardArray[x + 1][y]) {
         potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") {
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) {
           if (name === "bfs") {
             neighbors.push(potentialNeighbor);
           } else {
@@ -2738,7 +2738,7 @@
       }
       if (boardArray[x][y - 1]) {
         potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") {
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) {
           if (name === "bfs") {
             neighbors.push(potentialNeighbor);
           } else {
@@ -2764,7 +2764,7 @@
       let unvisitedNodes = Object.keys(nodes);
       while (unvisitedNodes.length) {
         let currentNode = closestNode(nodes, unvisitedNodes);
-        while (currentNode.status === "wall" && unvisitedNodes.length) {
+        while (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") && unvisitedNodes.length) {
           currentNode = closestNode(nodes, unvisitedNodes)
         }
         if (currentNode.distance === Infinity) {
@@ -2848,19 +2848,19 @@
       let potentialNeighbor;
       if (boardArray[x - 1] && boardArray[x - 1][y]) {
         potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x + 1] && boardArray[x + 1][y]) {
         potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y - 1]) {
         potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y + 1]) {
         potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       return neighbors;
     }
