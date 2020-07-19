@@ -1257,6 +1257,37 @@
           this.currentHeuristic = "poweredManhattanDistance"
           this.changeStartNodeImages();
         }
+        document.getElementById("startButtonGreedyAdvanced").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Best-first Search*!</button>'
+
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button5").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Manhattan)</button>'
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button6").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Euclidean)</button>'
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button7").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Octile)</button>'
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button8").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Chebyshev)</button>'
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
 
         document.getElementById("startButtonAStar3").onclick = () => {
           document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Convergent Swarm!</button>'
