@@ -7335,7 +7335,7 @@ footer p {
 
 /* stats css */
 
-/* #stats {
+#stats {
   color: #B8E986;
   margin:1vw;
   padding: 5px;
@@ -7345,7 +7345,7 @@ footer p {
   line-height: 1.5vw;
   border-radius: 2px;
   width: 17vw;
-} */
+}
 
 #button1,#button2,#button3,#button4,#button5,#button6,#button7,#button8 {
   background: #3490E7;

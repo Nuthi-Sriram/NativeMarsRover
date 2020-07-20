@@ -359,7 +359,7 @@
       this.isObject = false;
       this.buttonsOn = false;
       this.speed = "fast";
-      this.terrain="wall";
+      this.terrain = "wall";
     }
 
     Board.prototype.initialise = function () {
@@ -718,11 +718,6 @@
           element.className = "startTransparent";
         }
       }
-
-
-
-
-
     };
 
     Board.prototype.createMazeOne = function (type) {
