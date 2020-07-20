@@ -988,7 +988,7 @@
         if (this.currentAlgorithm === "greedy" || this.currentAlgorithm === "CLA") {
           document.getElementById("algorithmDescriptor").innerHTML = `${name} is <i><b>weighted</b></i> and <i><b>does not guarantee</b></i> the shortest path!`;
         }
-        document.getElementById("weightLegend").className = "";
+        // document.getElementById("weightLegend").className = "";
         for (let i = 0; i < 14; i++) {
           let j = i.toString();
           let backgroundImage = document.styleSheets["1"].rules[j].style.backgroundImage;
@@ -1222,10 +1222,18 @@
 
         document.getElementById("startButtonAStar2").onclick = () => {
           document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!</button>'
+          let start = performance.now();
+          console.log(start);
           this.currentAlgorithm = "astar";
           this.currentHeuristic = "poweredManhattanDistance"
           this.changeStartNodeImages();
+          let end = performance.now();
+          console.log(end);
+          let time = (end - start).toFixed(2).toString();
+          console.log(time);
+          document.getElementById("stats").innerHTML = time;
         }
+
         document.getElementById("startButtonAStarAdvanced").onclick = () => {
           document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Advanced A*!</button>'
 
