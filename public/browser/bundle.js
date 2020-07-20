@@ -4,6 +4,8 @@
     const unweightedSearchAlgorithm = require("../pathfindingAlgorithms/unweightedSearchAlgorithm");
 
     function launchAnimations(board, success, type, object, algorithm, heuristic) {
+      let start = performance.now();
+      console.log(start);
       let nodes = object ? board.objectNodesToAnimate.slice(0) : board.nodesToAnimate.slice(0);
       let speed = board.speed === "fast" ?
         0 : board.speed === "average" ?
@@ -55,8 +57,14 @@
                   board.reset();
                 }
                 shortestNodes = board.objectShortestPathNodesToAnimate.concat(board.shortestPathNodesToAnimate);
+                let end = performance.now();
+                console.log(end);
+                let time = (end - start).toFixed(2).toString();
+                console.log(time);
+                document.getElementById("stats").innerHTML ="Time taken: "+time+"ms";
                 return;
               } else {
+                document.getElementById("stats").innerHTML = "Infinity";
                 console.log("Failure.");
                 board.reset();
                 board.toggleButtons();
@@ -1217,16 +1225,9 @@
 
         document.getElementById("startButtonAStar2").onclick = () => {
           document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!</button>'
-          let start = performance.now();
-          console.log(start);
           this.currentAlgorithm = "astar";
           this.currentHeuristic = "poweredManhattanDistance"
           this.changeStartNodeImages();
-          let end = performance.now();
-          console.log(end);
-          let time = (end - start).toFixed(2).toString();
-          console.log(time);
-          document.getElementById("stats").innerHTML = time;
         }
 
         document.getElementById("startButtonAStarAdvanced").onclick = () => {
