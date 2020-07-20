@@ -10,7 +10,7 @@ function weightedSearchAlgorithm(nodes, start, target, nodesToAnimate, boardArra
   let unvisitedNodes = Object.keys(nodes);
   while (unvisitedNodes.length) {
     let currentNode = closestNode(nodes, unvisitedNodes);
-    while (currentNode.status === "wall" && unvisitedNodes.length) {
+    while (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") && unvisitedNodes.length) {
       currentNode = closestNode(nodes, unvisitedNodes)
     }
     if (currentNode.distance === Infinity) {
@@ -94,19 +94,19 @@ function getNeighbors(id, nodes, boardArray) {
   let potentialNeighbor;
   if (boardArray[x - 1] && boardArray[x - 1][y]) {
     potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-    if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+    if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
   }
   if (boardArray[x + 1] && boardArray[x + 1][y]) {
     potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-    if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+    if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
   }
   if (boardArray[x][y - 1]) {
     potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-    if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+    if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
   }
   if (boardArray[x][y + 1]) {
     potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-    if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+    if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
   }
   return neighbors;
 }

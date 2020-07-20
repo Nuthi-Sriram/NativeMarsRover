@@ -7,6 +7,7 @@ function launchAnimations(board, success, type, object, algorithm, heuristic) {
     0 : board.speed === "average" ?
       100 : 500;
   let shortestNodes;
+  // let start = performance.now();
   function timeout(index) {
     setTimeout(function () {
       if (index === nodes.length) {
@@ -168,7 +169,23 @@ function launchAnimations(board, success, type, object, algorithm, heuristic) {
   }
 
   timeout(0);
-
+  // let end = performance.now();
+  // let time = (end - start).toFixed(2).toString();
+  // let content =
+  //     "[" +
+  //     store.consoleLineNumber +
+  //     "] " +
+  //     algorithm +
+  //     " visited " +
+  //     total.length +
+  //     " nodes in: " +
+  //     time +
+  //     " ms. Path length = " +
+  //     path.length +
+  //     ".";
+  // let consoleElement = document.getElementById("stats");
+  //   consoleElement.innerHTML += openingTag + content + closingTag;
+  // document.getElementById("stats").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Cool stats</button>'
 };
 
 module.exports = launchAnimations;

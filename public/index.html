@@ -61,6 +61,7 @@
               <li id='startButtonAStar2'><a href="#">Simple A* Search</a></li>
               <li id='startButtonAStarAdvanced'><button id="myBtn"><a href="#">Advanced A* Search</a></button></li>
               <li id='startButtonGreedy'><a href="#">Greedy Best-first Search</a></li>
+              <li id='startButtonGreedyAdvanced'><button id="myBtn1"><a href="#">Best-first Search</a></button></li>
               <li id='startButtonAStar'><a href="#">Swarm Algorithm</a></li>
               <li id='startButtonAStar3'><a href="#">Convergent Swarm Algorithm</a></li>
               <li id='startButtonBidirectional'><a href="#">Bidirectional Swarm Algorithm</a></li>
@@ -106,7 +107,7 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Terrain Type
+            <a id="terraintype" class="dropdown-toggle" data-toggle="dropdown" href="#">Terrain Type
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li id='terraintype1'><a href="#">Air (Weight [15])</a></li>
@@ -117,6 +118,7 @@
               <li id='terraintype6'><a href="#">Sand (Weight [15])</a></li>
               <li id='terraintype7'><a href="#">Grass (Weight [15])</a></li>
               <li id='terraintype8'><a href="#">Granite (Weight [15])</a></li>
+              <li id='terraintype0'><a href="#">Default</a></li>
             </ul>
           </li>
         </ul>
@@ -144,11 +146,11 @@
           <div class="target"></div>Target Node
         </li>
         <li id="bombLegend">
-          <div class="object"></div>Bomb Node
+          <div class="object"></div>Tools Node
         </li>
-        <li id="weightLegend">
+        <!-- <li id="weightLegend">
           <div class="borderlessWeight"></div>Weight Node
-        </li>
+        </li> -->
         <li>
           <div class="unvisited"></div>Unvisited Node
         </li>
@@ -160,8 +162,33 @@
           <div class="shortest-path"></div>Shortest-path Node
         </li>
         <li>
-          <div class="wall"></div>Wall Node
+          <div class="wall"></div>Default Wall Node
         </li>
+        <li>
+          <div class="wall1"></div>Air 
+        </li>
+        <li>
+          <div class="wall2"></div>Craters
+        </li>
+        <li>
+          <div class="wall3"></div>Volcanoes
+        </li>
+        <li>
+          <div class="wall4"></div>Rocky
+        </li>
+        <li>
+          <div class="wall5"></div>Water
+        </li>
+        <li>
+          <div class="wall6"></div>Sand
+        </li>
+        <li>
+          <div class="wall7"></div>Grass
+        </li>
+        <li>
+          <div class="wall8"></div>Granite
+        </li>
+
       </ul>
     </div>
 
@@ -225,12 +252,59 @@
 
       </div>
     </div>
+
+    <div id="myModal1" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="accordion">
+          <h3 id="astar_header"><a href="#">Best-first search</a></h3>
+          <div id="astar_section" class="finder_section">
+            <header class="option_header">
+              <h3>Pick a Heuristic function of your choice!!</h3>
+            </header>
+           
+            <div id="play_panel" class="panel right_panel">
+              <button id="button5" class="control_button">manhattan </button>
+            </div>
+            <div id="play_panel" class="panel right_panel">
+              <button id="button6" class="control_button">euclidean </button>
+            </div>
+            <div id="play_panel" class="panel right_panel">
+              <button id="button7" class="control_button">octile </button>
+            </div>
+            <div id="play_panel" class="panel right_panel">
+              <button id="button8" class="control_button">chebyshev</button>
+            </div>
+            <!-- <header class="option_header">
+              <h3>Options</h3>
+            </header> -->
+            <!-- <div class="optional sub_options">
+              <input type="checkbox" class="allow_diagonal" checked>
+              <label class="option_label">Allow Diagonal</label> <br>
+              <input type="checkbox" class="bi-directional">
+              <label class="option_label">Bi-directional</label> <br>
+              <input type="checkbox" class="dont_cross_corners">
+              <label class="option_label">Don't Cross Corners</label> <br>
+              <input class="spinner" name="astar_weight" value="1">
+              <label class="option_label">Weight</label> <br>
+            </div> -->
+          </div>
+          <!-- <div id="play_panel" class="panel right_panel">
+            <button id="button1" class="control_button">Search</button>
+          </div> -->
+
+        </div>
+
+      </div>
+    </div>
     <script>
       var modal = document.getElementById("myModal");
 
       // Get the button that opens the modal
       var btn = document.getElementById("myBtn");
-      var btn1 = document.getElementById("button1");
+      // var btn1 = document.getElementById("button1");
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
 
@@ -243,9 +317,9 @@
       span.onclick = function () {
         modal.style.display = "none";
       }
-      btn1.onclick = function () {
-        modal.style.display = "none";
-      }
+      // btn1.onclick = function () {
+      //   modal.style.display = "none";
+      // }
 
 
       // When the user clicks anywhere outside of the modal, close it
@@ -256,6 +330,59 @@
       }
 
     </script>
+
+<script>
+  var modal = document.getElementById("myModal1");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn1");
+  // var btn1 = document.getElementById("button1");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal 
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+  // btn1.onclick = function () {
+  //   modal.style.display = "none";
+  // }
+
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+</script>
+<!-- <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script> -->
+<!-- <script>
+   var
+            timeStart, timeEnd;
+
+        timeStart = window.performance ? performance.now() : Date.now();
+        
+        
+        timeEnd = window.performance ? performance.now() : Date.now();
+        this.timeSpent = (timeEnd - timeStart).toFixed(4);
+
+        this.loop();
+
+   var texts = [
+            'length: ' + Math.round(opts.pathLength * 100) / 100,
+            'time: ' + opts.timeSpent + 'ms',
+            'operations: ' + opts.operationCount
+        ];
+        $('#stats').show().html(texts.join('<br>'));
+
+</script> -->
 </body>
 
 

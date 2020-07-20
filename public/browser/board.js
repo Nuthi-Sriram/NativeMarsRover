@@ -41,6 +41,7 @@ function Board(height, width) {
   this.isObject = false;
   this.buttonsOn = false;
   this.speed = "fast";
+  this.terrain = "wall"
 }
 
 Board.prototype.initialise = function () {
@@ -188,9 +189,9 @@ Board.prototype.changeNormalNode = function (currentNode) {
   if (!this.keyDown) {
     if (!relevantStatuses.includes(currentNode.status)) {
       element.className = currentNode.status !== "wall" ?
-        "wall" : "unvisited";
+        this.terrain : "unvisited";
       currentNode.status = element.className !== "wall" ?
-        "unvisited" : "wall";
+        "unvisited" : this.terrain;
       currentNode.weight = 0;
     }
   } else if (this.keyDown === 87 && !unweightedAlgorithms.includes(this.currentAlgorithm)) {
@@ -817,6 +818,51 @@ Board.prototype.toggleButtons = function () {
       document.getElementById("adjustSpeed").innerHTML = 'Speed: Slow<span class="caret"></span>';
     }
 
+    document.getElementById("terraintype0").onclick = () => {
+      this.terrain = "wall";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Default<span class="caret"></span>';
+    }
+
+    document.getElementById("terraintype1").onclick = () => {
+      this.terrain = "wall1";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Air<span class="caret"></span>';
+    }
+
+    document.getElementById("terraintype2").onclick = () => {
+      this.terrain = "wall2";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Craters<span class="caret"></span>';
+    }
+
+    document.getElementById("terraintype3").onclick = () => {
+      this.terrain = "wall3";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Volcanoes<span class="caret"></span>';
+    }
+
+    document.getElementById("terraintype4").onclick = () => {
+      this.terrain = "wall4";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Rocky<span class="caret"></span>';
+    }
+
+    document.getElementById("terraintype5").onclick = () => {
+      this.terrain = "wall5";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Water<span class="caret"></span>';
+    }
+
+    document.getElementById("terraintype6").onclick = () => {
+      this.terrain = "wall6";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Sand<span class="caret"></span>';
+    }
+
+    document.getElementById("terraintype7").onclick = () => {
+      this.terrain = "wall7";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Grass<span class="caret"></span>';
+    }
+    document.getElementById("terraintype8").onclick = () => {
+      this.terrain = "wall8";
+      document.getElementById("terraintype").innerHTML = 'Terrain type: Granite<span class="caret"></span>';
+    }
+
+
     document.getElementById("startStairDemonstration").onclick = () => {
       this.clearWalls();
       this.clearPath("clickedButton");
@@ -894,7 +940,38 @@ Board.prototype.toggleButtons = function () {
       this.currentHeuristic = "poweredManhattanDistance"
       this.changeStartNodeImages();
     }
+    
+    document.getElementById("startButtonGreedyAdvanced").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Best-first Search*!</button>'
 
+      this.currentAlgorithm = "CLA";
+      this.currentHeuristic = "extraPoweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button5").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Manhattan)</button>'
+      this.currentAlgorithm = "CLA";
+      this.currentHeuristic = "extraPoweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button6").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Euclidean)</button>'
+      this.currentAlgorithm = "CLA";
+      this.currentHeuristic = "extraPoweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button7").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Octile)</button>'
+      this.currentAlgorithm = "CLA";
+      this.currentHeuristic = "extraPoweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
+    document.getElementById("button8").onclick = () => {
+      document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Chebyshev)</button>'
+      this.currentAlgorithm = "CLA";
+      this.currentHeuristic = "extraPoweredManhattanDistance"
+      this.changeStartNodeImages();
+    }
 
 
     document.getElementById("startButtonAStar3").onclick = () => {

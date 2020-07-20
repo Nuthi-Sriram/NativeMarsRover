@@ -156,7 +156,7 @@
           } else if (currentNode.direction === "left") {
             currentHTMLNode.className = "shortest-path-left";
           } else if (currentNode.direction = "down-right") {
-            currentHTMLNode.className = "wall"
+            currentHTMLNode.className = this.terrain
           }
         }
         if (previousNode) {
@@ -306,7 +306,7 @@
             board.toggleButtons();
             return;
           }
-          nodes[index].className = board.nodes[nodes[index].id].weight === 15 ? "unvisited weight" : "wall";
+          nodes[index].className = board.nodes[nodes[index].id].weight === 15 ? "unvisited weight" : this.terrain;
           timeout(index + 1);
         }, speed);
       }
@@ -359,6 +359,7 @@
       this.isObject = false;
       this.buttonsOn = false;
       this.speed = "fast";
+      this.terrain="wall";
     }
 
     Board.prototype.initialise = function () {
@@ -505,10 +506,10 @@
       let unweightedAlgorithms = ["dfs", "bfs"]
       if (!this.keyDown) {
         if (!relevantStatuses.includes(currentNode.status)) {
-          element.className = currentNode.status !== "wall" ?
-            "wall" : "unvisited";
-          currentNode.status = element.className !== "wall" ?
-            "unvisited" : "wall";
+          element.className = currentNode.status !== this.terrain ?
+            this.terrain : "unvisited";
+          currentNode.status = element.className !== this.terrain ?
+            "unvisited" : this.terrain;
           currentNode.weight = 0;
         }
       } else if (this.keyDown === 87 && !unweightedAlgorithms.includes(this.currentAlgorithm)) {
@@ -729,11 +730,11 @@
         let random = Math.random();
         let currentHTMLNode = document.getElementById(node);
         let relevantClassNames = ["start", "target", "object"]
-        let randomTwo = type === "wall" ? 0.25 : 0.35;
+        let randomTwo = type === this.terrain ? 0.25 : 0.35;
         if (random < randomTwo && !relevantClassNames.includes(currentHTMLNode.className)) {
-          if (type === "wall") {
-            currentHTMLNode.className = "wall";
-            this.nodes[node].status = "wall";
+          if (type === this.terrain) {
+            currentHTMLNode.className = this.terrain;
+            this.nodes[node].status = this.terrain;
             this.nodes[node].weight = 0;
           } else if (type === "weight") {
             currentHTMLNode.className = "unvisited weight";
@@ -825,7 +826,7 @@
         currentNode.otherdistance = Infinity;
         currentNode.otherdirection = null;
         let currentHTMLNode = document.getElementById(id);
-        let relevantStatuses = ["wall", "start", "target", "object"];
+        let relevantStatuses = [this.terrain, "start", "target", "object"];
         if ((!relevantStatuses.includes(currentNode.status) || currentHTMLNode.className === "visitedobject") && currentNode.weight !== 15) {
           currentNode.status = "unvisited";
           currentHTMLNode.className = "unvisited";
@@ -841,7 +842,7 @@
       Object.keys(this.nodes).forEach(id => {
         let currentNode = this.nodes[id];
         let currentHTMLNode = document.getElementById(id);
-        if (currentNode.status === "wall" || currentNode.weight === 15) {
+        if (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") || currentNode.weight === 15) {
           currentNode.status = "unvisited";
           currentNode.weight = 0;
           currentHTMLNode.className = "unvisited";
@@ -870,7 +871,7 @@
         currentNode.heuristicDistance = null;
         currentNode.storedDirection = currentNode.direction;
         currentNode.direction = null;
-        let relevantStatuses = ["wall", "start", "target", "object"];
+        let relevantStatuses = [this.terrain, "start", "target", "object"];
         if (!relevantStatuses.includes(currentNode.status)) {
           currentNode.status = "unvisited";
         }
@@ -987,7 +988,7 @@
         if (this.currentAlgorithm === "greedy" || this.currentAlgorithm === "CLA") {
           document.getElementById("algorithmDescriptor").innerHTML = `${name} is <i><b>weighted</b></i> and <i><b>does not guarantee</b></i> the shortest path!`;
         }
-        document.getElementById("weightLegend").className = "";
+        // document.getElementById("weightLegend").className = "";
         for (let i = 0; i < 14; i++) {
           let j = i.toString();
           let backgroundImage = document.styleSheets["1"].rules[j].style.backgroundImage;
@@ -1135,6 +1136,51 @@
           document.getElementById("adjustSpeed").innerHTML = 'Speed: Slow<span class="caret"></span>';
         }
 
+
+        document.getElementById("terraintype0").onclick = () => {
+          this.terrain = "wall";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Default<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype1").onclick = () => {
+          this.terrain = "wall1";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Air<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype2").onclick = () => {
+          this.terrain = "wall2";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Craters<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype3").onclick = () => {
+          this.terrain = "wall3";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Volcanoes<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype4").onclick = () => {
+          this.terrain = "wall4";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Rocky<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype5").onclick = () => {
+          this.terrain = "wall5";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Water<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype6").onclick = () => {
+          this.terrain = "wall6";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Sand<span class="caret"></span>';
+        }
+
+        document.getElementById("terraintype7").onclick = () => {
+          this.terrain = "wall7";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Grass<span class="caret"></span>';
+        }
+        document.getElementById("terraintype8").onclick = () => {
+          this.terrain = "wall8";
+          document.getElementById("terraintype").innerHTML = 'Terrain type: Granite<span class="caret"></span>';
+        }
+
         document.getElementById("startStairDemonstration").onclick = () => {
           this.clearWalls();
           this.clearPath("clickedButton");
@@ -1176,10 +1222,18 @@
 
         document.getElementById("startButtonAStar2").onclick = () => {
           document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!</button>'
+          let start = performance.now();
+          console.log(start);
           this.currentAlgorithm = "astar";
           this.currentHeuristic = "poweredManhattanDistance"
           this.changeStartNodeImages();
+          let end = performance.now();
+          console.log(end);
+          let time = (end - start).toFixed(2).toString();
+          console.log(time);
+          document.getElementById("stats").innerHTML = time;
         }
+
         document.getElementById("startButtonAStarAdvanced").onclick = () => {
           document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Advanced A*!</button>'
 
@@ -1209,6 +1263,37 @@
           document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize A*!(Chebyshev)</button>'
           this.currentAlgorithm = "astar";
           this.currentHeuristic = "poweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("startButtonGreedyAdvanced").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize Best-first Search*!</button>'
+
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button5").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Manhattan)</button>'
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button6").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Euclidean)</button>'
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button7").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Octile)</button>'
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
+          this.changeStartNodeImages();
+        }
+        document.getElementById("button8").onclick = () => {
+          document.getElementById("startButtonStart").innerHTML = '<button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize BFS!(Chebyshev)</button>'
+          this.currentAlgorithm = "CLA";
+          this.currentHeuristic = "extraPoweredManhattanDistance"
           this.changeStartNodeImages();
         }
 
@@ -1954,7 +2039,7 @@
       let unvisitedNodes = Object.keys(nodes);
       while (unvisitedNodes.length) {
         let currentNode = closestNode(nodes, unvisitedNodes);
-        while (currentNode.status === "wall" && unvisitedNodes.length) {
+        while (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") && unvisitedNodes.length) {
           currentNode = closestNode(nodes, unvisitedNodes)
         }
         if (currentNode.distance === Infinity) return false;
@@ -2016,19 +2101,19 @@
       let potentialNeighbor;
       if (boardArray[x - 1] && boardArray[x - 1][y]) {
         potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x + 1] && boardArray[x + 1][y]) {
         potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y - 1]) {
         potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y + 1]) {
         potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       // if (boardArray[x - 1] && boardArray[x - 1][y - 1]) {
       //   potentialNeighbor = `${(x - 1).toString()}-${(y - 1).toString()}`
@@ -2249,9 +2334,9 @@
       while (unvisitedNodesOne.length && unvisitedNodesTwo.length) {
         let currentNode = closestNode(nodes, unvisitedNodesOne);
         let secondCurrentNode = closestNodeTwo(nodes, unvisitedNodesTwo);
-        while ((currentNode.status === "wall" || secondCurrentNode.status === "wall") && unvisitedNodesOne.length && unvisitedNodesTwo.length) {
-          if (currentNode.status === "wall") currentNode = closestNode(nodes, unvisitedNodesOne);
-          if (secondCurrentNode.status === "wall") secondCurrentNode = closestNodeTwo(nodes, unvisitedNodesTwo);
+        while ((currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") || secondCurrentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) && unvisitedNodesOne.length && unvisitedNodesTwo.length) {
+          if (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) currentNode = closestNode(nodes, unvisitedNodesOne);
+          if (secondCurrentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) secondCurrentNode = closestNodeTwo(nodes, unvisitedNodesTwo);
         }
         if (currentNode.distance === Infinity || secondCurrentNode.otherdistance === Infinity) {
           return false;
@@ -2347,19 +2432,19 @@
       let potentialNeighbor;
       if (boardArray[x - 1] && boardArray[x - 1][y]) {
         potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x + 1] && boardArray[x + 1][y]) {
         potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y - 1]) {
         potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y + 1]) {
         potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       return neighbors;
     }
@@ -2662,7 +2747,7 @@
       let potentialNeighbor;
       if (boardArray[x - 1] && boardArray[x - 1][y]) {
         potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") {
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) {
           if (name === "bfs") {
             neighbors.push(potentialNeighbor);
           } else {
@@ -2672,7 +2757,7 @@
       }
       if (boardArray[x][y + 1]) {
         potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") {
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) {
           if (name === "bfs") {
             neighbors.push(potentialNeighbor);
           } else {
@@ -2682,7 +2767,7 @@
       }
       if (boardArray[x + 1] && boardArray[x + 1][y]) {
         potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") {
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) {
           if (name === "bfs") {
             neighbors.push(potentialNeighbor);
           } else {
@@ -2692,7 +2777,7 @@
       }
       if (boardArray[x][y - 1]) {
         potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") {
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) {
           if (name === "bfs") {
             neighbors.push(potentialNeighbor);
           } else {
@@ -2718,7 +2803,7 @@
       let unvisitedNodes = Object.keys(nodes);
       while (unvisitedNodes.length) {
         let currentNode = closestNode(nodes, unvisitedNodes);
-        while (currentNode.status === "wall" && unvisitedNodes.length) {
+        while (currentNode.status === ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8") && unvisitedNodes.length) {
           currentNode = closestNode(nodes, unvisitedNodes)
         }
         if (currentNode.distance === Infinity) {
@@ -2802,19 +2887,19 @@
       let potentialNeighbor;
       if (boardArray[x - 1] && boardArray[x - 1][y]) {
         potentialNeighbor = `${(x - 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x + 1] && boardArray[x + 1][y]) {
         potentialNeighbor = `${(x + 1).toString()}-${y.toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y - 1]) {
         potentialNeighbor = `${x.toString()}-${(y - 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       if (boardArray[x][y + 1]) {
         potentialNeighbor = `${x.toString()}-${(y + 1).toString()}`
-        if (nodes[potentialNeighbor].status !== "wall") neighbors.push(potentialNeighbor);
+        if (nodes[potentialNeighbor].status !== ("wall" || "wall1" || "wall2" || "wall3" || "wall4" || "wall5" || "wall6" || "wall7" || "wall8")) neighbors.push(potentialNeighbor);
       }
       return neighbors;
     }
